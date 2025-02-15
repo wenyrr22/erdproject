@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+{% for task in all_tasks %}
+  <div>
+    <p>published: {{task.created_at}}</p>
+    <h2><a href="">{{task.title}}</a></h2>
+    <p>{{task.description}}</p>
+    <form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <a href="{% url 'edit_task' task.title %}">Редактировать задачу</a>
+    </form>
+  </div>
+{% endfor %}
+{% endblock %}
